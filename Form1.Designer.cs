@@ -39,7 +39,7 @@
             this.lbl_timeLeft.ForeColor = System.Drawing.Color.White;
             this.lbl_timeLeft.Location = new System.Drawing.Point(12, 17);
             this.lbl_timeLeft.Name = "lbl_timeLeft";
-            this.lbl_timeLeft.Size = new System.Drawing.Size(749, 117);
+            this.lbl_timeLeft.Size = new System.Drawing.Size(1246, 404);
             this.lbl_timeLeft.TabIndex = 0;
             this.lbl_timeLeft.Text = "9999:99:99:99";
             this.lbl_timeLeft.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -53,7 +53,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Green;
-            this.ClientSize = new System.Drawing.Size(773, 143);
+            this.ClientSize = new System.Drawing.Size(1270, 430);
             this.Controls.Add(this.lbl_timeLeft);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "Form1";
