@@ -13,6 +13,7 @@ namespace Countdown
     public partial class Form1 : Form
     {
         DateTime d;
+        bool isDragged = false;
 
         public Form1()
         {
@@ -32,25 +33,34 @@ namespace Countdown
             {
                 try
                 {
-                    TimeSpan timeSpan = d - DateTime.Now;
                     int monthsLeft, daysLeft;
+
+                    TimeSpan timeSpan = d - DateTime.Now;
+
+
                     (monthsLeft, daysLeft) = GetRemainingMonths(DateTime.Now, d);
 
-                    lbl_timeLeft.Text =  (monthsLeft / 12).ToString() + " year," +
-                                         (monthsLeft % 12).ToString() + " month, " +
-                                         (timeSpan.Days - daysLeft).ToString() + " days, " +
-                                         timeSpan.Hours.ToString("00") + " hours, " +
-                                         timeSpan.Minutes.ToString("00") + " minutes, " +
-                                         timeSpan.Seconds.ToString("00") + " seconds";
-                                      
+                    int years = monthsLeft / 12;
+                    int months = monthsLeft % 12;
+                    int days = timeSpan.Days - daysLeft;
                     
-
+                    lbl_timeLeft.Text =  years.ToString() + (years > 1 ? " years, \n" : " year, \n") +
+                                            months.ToString() + (months > 1 ? " months, \n" : " month, \n") + 
+                                            days.ToString() + (days > 1 ? " days, \n" : " day, \n") +
+                                            timeSpan.Hours.ToString() + (timeSpan.Hours > 1 ? " hours, \n" : " hour, \n") +
+                                            timeSpan.Minutes.ToString() + (timeSpan.Minutes > 1 ? " minutes, \n" : " minute, \n") +
+                                            timeSpan.Seconds.ToString() + (timeSpan.Seconds > 1 ? " seconds. \n" : " second. \n");
+                                      
                 }
                 catch (Exception ex)
                 {
                     MessageBox.Show(ex.ToString());
                     throw;
                 }
+            }
+            else
+            {
+                lbl_timeLeft.Text = "BISCO MAKING TIME!!!";
             }
         }
 
@@ -110,6 +120,34 @@ namespace Countdown
             return (monthsLeft, daysLeft);
         }
 
+        private void lbl_timeLeft_MouseDown(object sender, MouseEventArgs e)
+        {
+
+            isDragged = true;
+
+        }
+
+        private void lbl_timeLeft_MouseMove(object sender, MouseEventArgs e)
+        {
+                
+            if (isDragged)
+            {
+                MoveMouse();
+            }
+
+        }
+
+        private void lbl_timeLeft_MouseUp(object sender, MouseEventArgs e)
+        {
+            isDragged = false;
+            
+        }
+
+        private void MoveMouse()
+        {
+            lbl_timeLeft.Top = MousePosition.Y;
+            lbl_timeLeft.Left = MousePosition.X;
+        }
     }
     
 }
